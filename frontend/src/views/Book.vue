@@ -1,18 +1,37 @@
 <template>
     <div>
-        <table>
-            <tr>
-                <th>编号</th>
-                <th>图书名称</th>
-                <th>作者</th>
-            </tr>
-            <tr v-for="item in books">
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.author }}</td>
-            </tr>
-        </table>
-        {{ msg }}
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <th>编号</th>-->
+<!--                <th>图书名称</th>-->
+<!--                <th>作者</th>-->
+<!--            </tr>-->
+<!--            <tr v-for="item in books">-->
+<!--                <td>{{ item.id }}</td>-->
+<!--                <td>{{ item.name }}</td>-->
+<!--                <td>{{ item.author }}</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+        <el-table
+                :data="books"
+                border
+                style="width: 100%">
+            <el-table-column
+                    prop="id"
+                    label="编号"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="图书名称"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="author"
+                    label="作者">
+            </el-table-column>
+        </el-table>
     </div>
 </template>
 
