@@ -4,11 +4,13 @@ package com.learn.wangxios.controller;
 import com.learn.wangxios.entity.Book;
 import com.learn.wangxios.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/book")
@@ -16,8 +18,9 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping("/findAll")
-    public List<Book> FindAll(){
-        return bookRepository.findAll();
+    @GetMapping("/findAll/{page}/{size}")
+    public Page<Book> FindAll(@PathVariable("page") Integer page, @PathVariable("size") Integer size){
+        PageRequest request = PageRequest.of(page-1, size);
+        return bookRepository.findAll(request);
     }
 }

@@ -32,6 +32,13 @@
                     label="作者">
             </el-table-column>
         </el-table>
+        <el-pagination
+                background
+                layout="prev, pager, next"
+                :total=total
+                @current-change="page"
+        >
+        </el-pagination>
     </div>
 </template>
 
@@ -41,6 +48,7 @@
         data() {
             return{
                 msg: "Hello Vue",
+                total: null,
                 books:[
                     {
                         id:1,
@@ -62,9 +70,21 @@
         },
         created() {
             const _this = this
-            axios.get("http://localhost:8181/book/findAll").then(function(resp){
-                _this.books = resp.data;
+            axios.get("http://localhost:8181/book/findAll/1/6").then(function(resp){
+                console.log(resp.data.content)
+                _this.books = resp.data.content;
+                _this.total = resp.data.totalElements;
             })
+        },
+        methods: {
+            page(currentPage) {
+                const _this = this
+                axios.get("http://localhost:8181/book/findAll/"+currentPage+"/6").then(function(resp){
+                    console.log(resp.data.content)
+                    _this.books = resp.data.content;
+                    _this.total = resp.data.totalElements;
+                })
+            }
         }
     }
 </script>
