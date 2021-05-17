@@ -22,9 +22,9 @@
         <el-pagination
                 background
                 layout="prev, pager, next"
-                :total=total
-                @current-change="page"
-        >
+                :page-size="pageSize"
+                :total="total"
+                @current-change="page">
         </el-pagination>
     </div>
 </template>
@@ -36,6 +36,7 @@
             return{
                 msg: "Hello Vue",
                 total: null,
+                pageSize: 1,
                 books:null
             }
         },
@@ -44,6 +45,7 @@
             axios.get("http://localhost:8181/book/findAll/0/6").then(function(resp){
                 console.log(resp.data.content)
                 _this.books = resp.data.content;
+                _this.pageSize = resp.data.size
                 _this.total = resp.data.totalElements;
             })
         },
