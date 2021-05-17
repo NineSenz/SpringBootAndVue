@@ -5,9 +5,9 @@
       <el-container>
         <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
           <el-menu router>
-                <el-menu-item index="/">首页</el-menu-item>
-                <el-menu-item index="/About">关于</el-menu-item>
-                <el-menu-item index="/Book">书籍</el-menu-item>
+            <el-menu-item index="/">首页</el-menu-item>
+            <el-menu-item index="/AddBook">添加书籍</el-menu-item>
+            <el-menu-item index="/BookList">查看书籍</el-menu-item>
           </el-menu>
         </el-aside>
         <el-container>
@@ -18,9 +18,9 @@
               <router-link to="/book">Book</router-link>
             </router-view>
           </el-main>
-          <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
+      <el-footer>Footer</el-footer>
     </el-container>
 
   </div>
